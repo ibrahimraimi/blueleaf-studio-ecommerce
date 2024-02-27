@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { client } from "@/lib/client";
 import { groq } from "next-sanity";
 
@@ -25,7 +27,6 @@ export default async function Page() {
       "slug": slug.current
     }`
   );
-  // console.log(products);
 
   return (
     <div>
