@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { CheckCheck, XCircle } from "lucide-react"
-import Stripe from "stripe"
-import { useShoppingCart } from "use-shopping-cart"
+import { useEffect } from "react";
+import { CheckCheck, XCircle } from "lucide-react";
+import { useShoppingCart } from "use-shopping-cart";
 
 interface Props {}
 
@@ -16,7 +15,7 @@ export function CheckoutSession() {
           No checkout session found
         </h1>
       </>
-    )
+    );
   }
 
   return (
@@ -34,5 +33,5 @@ export function CheckoutSession() {
         your invoice.
       </p>
     </>
-  )
+  );
 }
