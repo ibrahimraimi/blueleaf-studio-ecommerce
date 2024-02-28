@@ -19,5 +19,5 @@ export async function Hero() {
     }`
   );
 
-  return <HeroParallax products={products} />;
+  return <div></div>;
 }
