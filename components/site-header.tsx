@@ -13,15 +13,28 @@ import { MobileNav } from "@/components/mobile-nav";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const defaultSearchQuery = searchParams.get("search") ?? "";
+
+  function onSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const searchQuery = formData.get("search");
+    router.replace(`/products/?search=${searchQuery}`);
+  }
 
   if (pathname.startsWith("/studio")) return null;
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center lg:justify-between space-x-4 px-6 sm:space-x-0">
+      <div className="mx-auto max-w-6xl flex h-16 items-center lg:justify-between space-x-4 px-6 sm:space-x-0">
         <MainNav />
         <MobileNav />
         <div className="flex items-center space-x-1">
-          <form className="hidden items-center lg:inline-flex lg:mr-4">
+          <form
+            onSubmit={onSubmit}
+            className="items-center lg:inline-flex lg:mr-4"
+          >
             <Input
               id="search"
               name="search"
@@ -29,6 +42,7 @@ export function SiteHeader() {
               autoComplete="off"
               placeholder="Search products..."
               className="h-9 lg:w-[300px]"
+              defaultValue={defaultSearchQuery}
             />
           </form>
           <Link href="/cart">
