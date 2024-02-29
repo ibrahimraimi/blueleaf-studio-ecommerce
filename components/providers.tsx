@@ -3,8 +3,6 @@
 import { CartProvider } from "use-shopping-cart";
 
 import { Toaster } from "@/components/ui/toaster";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
 
 interface Props {
   children: React.ReactNode;
@@ -18,11 +16,8 @@ export function Providers({ children }: Props) {
       cartMode="checkout-session"
       stripe=""
     >
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-        <Toaster />
-        {children}
-        {/* <TailwindIndicator /> */}
-      </ThemeProvider>
+      <Toaster />
+      {children}
     </CartProvider>
   );
 }
