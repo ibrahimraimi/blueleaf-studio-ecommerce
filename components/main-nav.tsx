@@ -31,7 +31,7 @@ export function MainNav() {
           About Us
         </Link>
         <Link
-          href="/pricing"
+          href="/contact"
           className={cn("transition-colors hover:text-foreground/80")}
         >
           Contact

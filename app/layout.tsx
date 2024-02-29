@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     },
   ],
   creator: "Ibrahim Raimi",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "white" },
+  //   { media: "(prefers-color-scheme: dark)", color: "black" },
+  // ],
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="relative flex flex-col min-h-screen">
               <SiteHeader />
               <SiteBlob />
-              <div className="container flex-1">{children}</div>
+              <div className="flex-1">{children}</div>
               <SiteFooter />
             </div>
           </Providers>
