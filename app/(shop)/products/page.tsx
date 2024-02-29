@@ -11,11 +11,31 @@ import { ProductFilters } from "@/components/product-filters";
 import { ProductGrid } from "@/components/product-grid";
 import { ProductSort } from "@/components/product-sort";
 
-interface Props {}
+interface Props {
+  searchParams: {
+    date?: string;
+    price?: string;
+    color?: string;
+    category?: string;
+    size?: string;
+  };
+}
 
-export default async function Page() {
+export default async function Page({ searchParams }: Props) {
+  const { date = "desc", price, color, category, size } = searchParams;
+  const priceOrder = price ? `| order(price ${price})` : "";
+  const dateOrder = date ? `| order(_createdAt ${date})` : "";
+  const order = `${priceOrder}${dateOrder}`;
+
+  const productFilter = `_type == "product"`;
+  const colorFilter = color ? `&& "${color}" in colors` : "";
+  const categoryFilter = category ? `&& "${category}" in categories` : "";
+  const sizeFilter = size ? `&& "${size}" in sizes` : "";
+
+  const filter = `*[${productFilter}${colorFilter}${categoryFilter}${sizeFilter}]`;
+
   const products = await client.fetch<SanityProduct[]>(
-    groq`*[_type == "product"]{
+    groq`${filter} ${order} {
       _id,
       _createdAt,
       name,
@@ -34,10 +54,8 @@ export default async function Page() {
         <main className="mx-auto max-w-6xl px-6">
           <div className="flex items-center justify-between border-b border-gray-200 pb-4 pt-16 dark:border-gray-800">
             <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
-              {/* All products */}
               {products.length} result{products.length === 1 ? "" : "s"}
             </h1>
-            {/* Product Sort */}
             <ProductSort />
           </div>
 
@@ -56,7 +74,6 @@ export default async function Page() {
               <div className="hidden lg:block">
                 <ProductFilters />
               </div>
-              {/* Product grid */}
               <ProductGrid products={products} />
             </div>
           </section>

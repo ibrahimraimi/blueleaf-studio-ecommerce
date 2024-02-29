@@ -17,7 +17,7 @@ export function SiteHeader() {
   if (pathname.startsWith("/studio")) return null;
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-16 max-w-6xl items-center lg:justify-between space-x-4 px-6 sm:space-x-0">
+      <div className="container mx-auto flex h-16 items-center lg:justify-between space-x-4 px-6 sm:space-x-0">
         <MainNav />
         <MobileNav />
         <div className="flex items-center space-x-1">
@@ -38,7 +38,7 @@ export function SiteHeader() {
               <span className="sr-only">Cart</span>
             </Button>
           </Link>
-          <ThemeToggle />
+          {process.env.NODE_ENV === "development" && <ThemeToggle />}
           {process.env.NODE_ENV === "development" && (
             <Link href="/studio">
               <Button size="sm" variant="ghost">

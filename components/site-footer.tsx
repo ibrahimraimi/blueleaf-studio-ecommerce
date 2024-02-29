@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { siteConfig } from "@/config/site"
+import { siteConfig } from "@/config/site";
 
 export function SiteFooter() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
-  if (pathname.startsWith("/studio")) return null
+  if (pathname.startsWith("/studio")) return null;
   return (
     <footer className="border-t">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-12 sm:py-20 lg:px-8">
@@ -33,5 +33,5 @@ export function SiteFooter() {
         </Link>
       </div>
     </footer>
-  )
+  );
 }

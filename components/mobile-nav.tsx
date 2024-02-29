@@ -57,14 +57,14 @@ export function MobileNav() {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-[400px] sm:w-[500px]">
+      <SheetContent className="w-[400px] sm:w-[400px]">
         <MobileLink
           href="/"
           className="flex items-center"
           onOpenChange={setOpen}
         >
           <Image
-            src="/logo.svg"
+            src="/assets/logo.svg"
             alt=""
             width={0}
             height={0}
