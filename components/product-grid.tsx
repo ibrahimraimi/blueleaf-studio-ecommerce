@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlForImage } from "@/lib/image";
 import { XCircle } from "lucide-react";
-import { formatCurrencyString } from "use-shopping-cart";
 
 import { SanityProduct } from "@/config/inventory";
 import { shimmer, toBase64 } from "@/lib/image-xml";
+import { formatCurrencyString } from "@/lib/utils";
 
 interface Props {
   products: SanityProduct[];
@@ -52,7 +52,12 @@ export function ProductGrid({ products }: Props) {
             )}
           </div>
           <h3 className="mt-4 font-medium">{product.name}</h3>
-          <p className="mt-2 font-medium">₦ {product.price}</p>
+          <p className="mt-2 font-medium">
+            {formatCurrencyString({
+              value: product.price,
+              currency: product.currency,
+            })}
+          </p>
         </Link>
       ))}
     </div>
