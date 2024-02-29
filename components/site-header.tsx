@@ -27,12 +27,12 @@ export function SiteHeader() {
 
   if (pathname.startsWith("/studio")) return null;
   return (
-    <Suspense>
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="mx-auto max-w-6xl flex h-16 items-center lg:justify-between space-x-4 px-6 sm:space-x-0">
-          <MainNav />
-          <MobileNav />
-          <div className="flex items-center space-x-1">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="mx-auto max-w-6xl flex h-16 items-center lg:justify-between space-x-4 px-6 sm:space-x-0">
+        <MainNav />
+        <MobileNav />
+        <div className="flex items-center space-x-1">
+          <Suspense>
             <form
               onSubmit={onSubmit}
               className="items-center lg:inline-flex lg:mr-4"
@@ -47,24 +47,24 @@ export function SiteHeader() {
                 defaultValue={defaultSearchQuery}
               />
             </form>
-            <Link href="/cart">
+          </Suspense>
+          <Link href="/cart">
+            <Button size="sm" variant="ghost">
+              <ShoppingCart className="h-5 w-5" />
+              <span className="ml-2 text-sm font-bold">0</span>
+              <span className="sr-only">Cart</span>
+            </Button>
+          </Link>
+          {process.env.NODE_ENV === "development" && <ThemeToggle />}
+          {process.env.NODE_ENV === "development" && (
+            <Link href="/studio">
               <Button size="sm" variant="ghost">
-                <ShoppingCart className="h-5 w-5" />
-                <span className="ml-2 text-sm font-bold">0</span>
-                <span className="sr-only">Cart</span>
+                <Edit className="h-5 w-5" />
               </Button>
             </Link>
-            {process.env.NODE_ENV === "development" && <ThemeToggle />}
-            {process.env.NODE_ENV === "development" && (
-              <Link href="/studio">
-                <Button size="sm" variant="ghost">
-                  <Edit className="h-5 w-5" />
-                </Button>
-              </Link>
-            )}
-          </div>
+          )}
         </div>
-      </header>
-    </Suspense>
+      </div>
+    </header>
   );
 }
