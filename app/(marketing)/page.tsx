@@ -3,11 +3,13 @@ import { Testimonials } from "@/components/marketing/testimonials";
 
 type Props = {};
 
+{
+  /* <Testimonials /> */
+}
 export default function page({}: Props) {
   return (
     <div>
       <Hero />
-      <Testimonials />
     </div>
   );
 }
