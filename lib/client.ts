@@ -10,6 +10,4 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn: true,
-  token:
-    "skZ27nRXe8s90hGRW0NtbTIQ3dN3Ag98wXmYmW4XWKNyf3olaGVAV20x1TLW2J5Oz87tUQHn7vUfJaKt7RRNLbLDbMb0NsxbXEUBMyFdefooCEXYEMSXJ9vmHPGZhRH1STBAHTQsNzU0yIkZM1E9wpftspb9UdpLUZaFhFy5ALpIvFRRoo3B",
 });
